@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dictionary</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <table id="each">
+            <tr th:each="word: ${words}">
+                <td th:text="${word.title}"></td>
+                <td th:text="${word.definition}"></td>
+                <td style="font-style: italic" th:text="${word.example}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<a th:href="@{/add}">Define a Word</a>
+</body>
+</html>

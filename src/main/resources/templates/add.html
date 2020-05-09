@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+</head>
+<body>
+<h3>New Word</h3>
+<div>
+    <form th:action="@{/add}" method="post" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Word"/>
+        <input type="text" name="definition" placeholder="Type your definition here"/>
+        <input type="text" name="example" placeholder="Type an example of how it's used in a sentence"/>
+        <button type="submit">Submit!</button>
+    </form>
+</div>
+
+<a th:href="@{/}">Go Home</a>
+</body>
+</html>
