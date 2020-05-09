@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 class HomeController{
 
@@ -18,8 +20,19 @@ class HomeController{
     }
 
     @GetMapping("/")
-    public String getPosts(Model model) {
-        model.addAttribute("words", wordService.findAll());
+    public String getPosts(Model model, String title) {
+
+        List<Word> words;
+
+        if (title != null && !title.isEmpty()){
+            words = wordService.findByTitle(title);
+        }
+        else {
+            words = wordService.findAll();
+        }
+
+        model.addAttribute("words", words);
+
         return "index";
     }
 

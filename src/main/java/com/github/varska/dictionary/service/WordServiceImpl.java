@@ -26,7 +26,7 @@ public class WordServiceImpl implements WordService{
     }
 
     @Override
-    public Word findByTitle(String title) {
+    public List<Word> findByTitle(String title) {
         return wordRepo.findByTitle(title);
     }
 }

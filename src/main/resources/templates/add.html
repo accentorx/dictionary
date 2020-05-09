@@ -10,8 +10,8 @@
 <div>
     <form th:action="@{/add}" method="post" enctype="multipart/form-data">
         <input type="text" name="title" placeholder="Word"/>
-        <input type="text" name="definition" placeholder="Type your definition here"/>
-        <input type="text" name="example" placeholder="Type an example of how it's used in a sentence"/>
+        <textarea type="text" name="definition" placeholder="Type your definition here"></textarea>
+        <textarea type="text" name="example" placeholder="Type an example of how it's used in a sentence"></textarea>
         <button type="submit">Submit!</button>
     </form>
 </div>

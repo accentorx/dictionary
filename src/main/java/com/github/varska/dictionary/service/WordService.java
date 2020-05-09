@@ -10,5 +10,5 @@ public interface WordService {
 
     List<Word> findAll();
 
-    Word findByTitle(String title);
+    List<Word> findByTitle(String title);
 }
