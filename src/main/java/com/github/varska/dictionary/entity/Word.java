@@ -1,9 +1,6 @@
 package com.github.varska.dictionary.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Word {
@@ -18,6 +15,10 @@ public class Word {
 
     private String example;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE) // one user many descriptions, fetch - every description получает сведения о авторе
+//    @JoinColumn(name = "sn_user_id")
+    private User user;
+
     public Word() {
     }
 
@@ -25,6 +26,13 @@ public class Word {
         this.title = title;
         this.definition = definition;
         this.example = example;
+    }
+
+    public Word(String title, String definition, String example, User user){
+        this.title = title;
+        this.definition = definition;
+        this.example = example;
+        this.user = user;
     }
 
     public Long getId() {
@@ -57,5 +65,13 @@ public class Word {
 
     public void setExample(String example) {
         this.example = example;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -6,6 +6,7 @@
     <title>Add</title>
 </head>
 <body>
+<div th:insert="fragments/header :: header"></div>
 <h3>New Word</h3>
 <div>
     <form th:action="@{/add}" method="post" enctype="multipart/form-data">

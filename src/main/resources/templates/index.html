@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Dictionary</title>
 </head>
 <body>
+<div th:insert="fragments/header :: header"></div>
+<div th:insert="fragments/header :: logout"></div>
+
 <div class="container">
     <div class="row">
 
@@ -19,6 +23,7 @@
                 <td th:text="${word.title}"></td>
                 <td th:text="${word.definition}"></td>
                 <td style="font-style: italic" th:text="${word.example}"></td>
+                <td th:text="'by ' + ${word.user}"></td>
             </tr>
         </table>
     </div>

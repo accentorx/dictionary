@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+
+<div class="container">
+
+    <div>
+        <form th:action="@{/registration}" th:object="${userForm}" method="post">
+            <table>
+                <tr>
+                    <div th:text="${usernameError}"></div>
+                    <td>Username:</td>
+                    <td><input type="text" th:field="*{username}" /></td>
+                    <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
+                </tr>
+                <tr>
+                    <div th:text="${passError}"></div>
+                    <td>Password:</td>
+                    <td><input type="password" th:field="*{password}" /></td>
+                    <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
+                </tr>
+                <tr>
+                    <td>Confirm password:</td>
+                    <td><input type="password" th:field="*{confirmPassword}" /></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" th:field="*{email}" /></td>
+                    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+                </tr>
+                </tr>
+                <tr>
+                    <td><button type="submit">Sign Up</button></td>
+                </tr>
+            </table>
+
+    <div>
+        <a th:href="@{/login}">Already have an account?</a>
+    </div>
+</div>
+</body>
+</html>
