@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title ></title>
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div class="container">
+    <div class="row">
+        <label>Words</label>
+        <th:block th:each="word: ${wordFromDb}">
+            <div>
+                <a th:href="@{'/word/' + ${word.title}}"><span th:text="${word.title}"></span></a>
+            </div>
+            <p></p>
+            <div th:text="${word.definition}"></div>
+            <div style="font-style: italic" th:text="${word.example}"></div>
+            <div>
+                <span>by </span><a th:href="@{'/user/' + ${word.user}}"><span th:text="${word.user}"></span></a>
+                <span th:text="${#temporals.format(word.localDate, 'MMMM dd, yyyy')}"></span>
+            </div>
+            <br><br>
+        </th:block>
+    </div>
+</div>
+</body>
+</html>

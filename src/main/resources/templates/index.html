@@ -8,7 +8,6 @@
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
-<!--<div th:insert="fragments/header :: logout"></div>-->
 
 <div class="container">
     <div class="row">
@@ -17,20 +16,23 @@
             <input id="searchWord" type="text" name="title" placeholder="Type any word">
             <button type="submit">Find</button>
         </form>
-
-        <table id="each">
-            <tr th:each="word: ${words}">
-                <td th:text="${word.title}"></td>
-                <td th:text="${word.definition}"></td>
-                <td style="font-style: italic" th:text="${word.example}"></td>
-                <td>
-                    <a th:href="@{'/user/' + ${word.user}}"><span th:text="'by ' + ${word.user}"></span></a>
-                </td>
-            </tr>
-        </table>
+        <br>
+        <a th:href="@{/add}">Define a Word</a>
+        <br><br>
+        <th:block th:each="word: ${words}">
+            <div>
+                <a th:href="@{'/word/' + ${word.title}}"><span th:text="${word.title}"></span></a>
+            </div>
+            <p></p>
+                            <div th:text="${word.definition}"></div>
+                            <div style="font-style: italic" th:text="${word.example}"></div>
+                            <div>
+                                <span>by </span><a th:href="@{'/user/' + ${word.user}}"><span th:text="${word.user}"></span></a>
+                                <span th:text="${#temporals.format(word.localDate, 'MMMM dd, yyyy')}"></span>
+                            </div>
+            <br><br>
+                        </th:block>
     </div>
 </div>
-
-<a th:href="@{/add}">Define a Word</a>
 </body>
 </html>

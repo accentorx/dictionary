@@ -1,6 +1,7 @@
 package com.github.varska.dictionary.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class Word {
@@ -11,13 +12,16 @@ public class Word {
 
     private String title;
 
+    @Column(name = "defination", length = 1024)
     private String definition;
 
+    @Column(name = "example", length = 1024)
     private String example;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE) // one user many descriptions, fetch - every description получает сведения о авторе
-//    @JoinColumn(name = "sn_user_id")
     private User user;
+
+    private LocalDate localDate;
 
     public Word() {
     }
@@ -73,5 +77,13 @@ public class Word {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
     }
 }

@@ -5,6 +5,7 @@ import com.github.varska.dictionary.entity.Word;
 import com.github.varska.dictionary.repository.WordRepo;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -18,6 +19,7 @@ public class WordServiceImpl implements WordService{
 
     @Override
     public void save(Word word) {
+        word.setLocalDate(LocalDate.now());
         wordRepo.save(word);
     }
 
