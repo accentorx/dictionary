@@ -1,5 +1,6 @@
 package com.github.varska.dictionary.service;
 
+import com.github.varska.dictionary.entity.User;
 import com.github.varska.dictionary.entity.Word;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface WordService {
     List<Word> findAll();
 
     List<Word> findByTitle(String title);
+
+    List<Word> findByUser(User user);
 }

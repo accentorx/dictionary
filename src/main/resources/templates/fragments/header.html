@@ -11,13 +11,12 @@
     <a th:href="@{/}">Dictionary</a>
     <a sec:authorize="isAnonymous()" th:href="@{/registration}">Registration</a>
     <a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
-
-</div>
-
-<div th:fragment="logout">
+<!--    <a sec:authorize="isAuthenticated()" th:href="${#authentication.principal}"></a>-->
+    <a sec:authorize="isAuthenticated()" th:href="@{'/user/' + ${#authentication.principal}}"><span th:text="${#authentication.principal}"></span></a>
     <form th:action="@{/logout}" method="post">
         <button sec:authorize="isAuthenticated()" type="submit">Logout</button>
     </form>
 </div>
+
 </body>
 </html>

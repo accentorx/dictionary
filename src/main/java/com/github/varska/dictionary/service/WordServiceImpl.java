@@ -1,5 +1,6 @@
 package com.github.varska.dictionary.service;
 
+import com.github.varska.dictionary.entity.User;
 import com.github.varska.dictionary.entity.Word;
 import com.github.varska.dictionary.repository.WordRepo;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,10 @@ public class WordServiceImpl implements WordService{
     @Override
     public List<Word> findByTitle(String title) {
         return wordRepo.findByTitle(title);
+    }
+
+    @Override
+    public List<Word> findByUser(User user) {
+        return wordRepo.findByUser(user);
     }
 }
