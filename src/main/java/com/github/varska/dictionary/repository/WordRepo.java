@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface WordRepo extends JpaRepository<Word, Long>{
 
-    List<Word> findByTitle(String title);
+    List<Word> findAllByOrderByIdDesc();
+    List<Word> findByTitleIgnoreCaseContaining(String title);
+    List<Word> findByTitleIgnoreCase(String title);
     List<Word> findByUser(User user);
 }

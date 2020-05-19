@@ -9,9 +9,11 @@
 <div th:insert="fragments/header :: header"></div>
 <div class="container">
     <div class="row">
-        <label>Posts</label>
+        <label th:text="${userWords.size()} + ' definition by ' + ${username}"></label>
         <th:block th:each="word: ${userWords}">
-            <div th:text="${word.title}"></div>
+            <div>
+                <a th:href="@{'/word/' + ${word.title}}"><span th:text="${word.title}"></span></a>
+            </div>
             <p></p>
             <div th:text="${word.definition}"></div>
             <div style="font-style: italic" th:text="${word.example}"></div>

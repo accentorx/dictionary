@@ -20,17 +20,23 @@ public class WordServiceImpl implements WordService{
     @Override
     public void save(Word word) {
         word.setLocalDate(LocalDate.now());
+        String title = word.getTitle().substring(0, 1).toUpperCase() + word.getTitle().substring(1);
+        word.setTitle(title);
         wordRepo.save(word);
     }
 
     @Override
     public List<Word> findAll() {
-        return wordRepo.findAll();
+        return wordRepo.findAllByOrderByIdDesc();
     }
 
     @Override
     public List<Word> findByTitle(String title) {
-        return wordRepo.findByTitle(title);
+        List<Word> words = wordRepo.findByTitleIgnoreCase(title);
+        if (words.isEmpty()){
+            return wordRepo.findByTitleIgnoreCaseContaining(title);
+        }
+        return words;
     }
 
     @Override
