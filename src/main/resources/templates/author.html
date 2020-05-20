@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title th:text="'Author : ' + ${username}">"</title>
+<!--    <link th:insert="fragments/header :: bootstrap" />-->
+<!--    <link th:rel="stylesheet"  th:href="@{webjars/bootstrap/4.5.0/css/bootstrap.min.css}" />-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<!--    todo не читает th:insert-->
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
 <div class="container">
-    <div class="row">
-        <label th:text="${userWords.size()} + ' definition by ' + ${username}"></label>
-        <th:block th:each="word: ${userWords}">
-            <div>
-                <a th:href="@{'/word/' + ${word.title}}"><span th:text="${word.title}"></span></a>
+    <div class="col mb-4">
+        <h3 th:text="${userWords.size()} + ' definition by ' + ${username}"></h3>
+        <th:block th:each="word: ${userWords}" class="card" style="width: 18rem;">
+            <div class="card-body">
+                <div class="card-title"><a th:href="@{'/word/' + ${word.title}}"><span th:text="${word.title}"></span></a></div>
+                <div class="card-text" th:text="${word.definition}"></div>
+                <div class="card-text" style="font-style: italic" th:text="${word.example}"></div>
+                <div class="card-text">
+                    <span>by </span><a class="card-link" th:href="@{'/user/' + ${word.user}}"><span th:text="${word.user}"></span></a>
+                    <span th:text="${#temporals.format(word.localDate, 'MMMM dd, yyyy')}"></span>
+                </div>
             </div>
-            <p></p>
-            <div th:text="${word.definition}"></div>
-            <div style="font-style: italic" th:text="${word.example}"></div>
-            <div>
-                <span>by </span><a th:href="@{'/user/' + ${word.user}}"><span th:text="${word.user}"></span></a>
-                <span th:text="${#temporals.format(word.localDate, 'MMMM dd, yyyy')}"></span>
-            </div>
-            <br><br>
         </th:block>
     </div>
 </div>
+<div th:insert="fragments/header :: js"></div>
 </body>
 </html>

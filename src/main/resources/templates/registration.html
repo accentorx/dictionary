@@ -4,45 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">-->
+<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>-->
+<!--    <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"-->
+<!--              rel="stylesheet">-->
+<!--    <link th:rel="stylesheet"  th:href="@{webjars/bootstrap/4.5.0/css/bootstrap.min.css} "/>-->
+    <link th:insert="fragments/header :: bootstrap" />
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
-
 <div class="container">
-
-    <div>
+    <div class="row">
+        <br>
         <form th:action="@{/registration}" th:object="${userForm}" method="post">
-            <table>
-                <tr>
-                    <div th:text="${usernameError}"></div>
-                    <td>Username:</td>
-                    <td><input type="text" th:field="*{username}" /></td>
-                    <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
-                </tr>
-                <tr>
-                    <div th:text="${passError}"></div>
-                    <td>Password:</td>
-                    <td><input type="password" th:field="*{password}" /></td>
-                    <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
-                </tr>
-                <tr>
-                    <td>Confirm password:</td>
-                    <td><input type="password" th:field="*{confirmPassword}" /></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="text" th:field="*{email}" /></td>
-                    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
-                </tr>
-                </tr>
-                <tr>
-                    <td><button type="submit">Sign Up</button></td>
-                </tr>
-            </table>
-
-    <div>
-        <a th:href="@{/login}">Already have an account?</a>
+            <div th:if="${passError}" class="alert alert-danger" role="alert">
+                Пароли должны совпадать
+            </div>
+            <div th:text="${usernameError}"></div>
+            <div class="form-group">
+                <label for="username" class="sr-only">Username</label>
+                <input type="text" id="username" class="form-control" name="username" placeholder="Username">
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="alert alert-danger" role="alert"></div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" id="password" class="form-control" name="password" placeholder="Password">
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger" role="alert"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword" class="sr-only">Confirm Password</label>
+                <input type="password" id="confirmPassword" class="form-control" name="confirmPassword" placeholder="Confirm password">
+            </div>
+            <div class="form-group">
+                <label for="email" class="sr-only">Email</label>
+                <input type="email" id="email" class="form-control" name="email" placeholder="Email" required>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+            <br>
+            <div class="form-group">
+                <a th:href="@{/login}" >Already have an account?</a>
+            </div>
+        </form>
     </div>
 </div>
+    <div th:insert="fragments/header :: js"></div>
 </body>
 </html>

@@ -5,34 +5,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Dictionary</title>
+    <link th:insert="fragments/header :: bootstrap" />
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
-
 <div class="container">
-    <div class="row">
-
+    <div class="col mb-4">
+        <br>
         <form th:action="@{/}" method="get">
-            <input id="searchWord" type="text" name="title" placeholder="Type any word">
-            <button type="submit">Find</button>
+<!--            <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">-->
+                <div class="input-group">
+            <input id="searchWord" type="search" name="title" placeholder="Type any word" class="form-control form-control-underlined border-info">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Find</button>
+                </div>
         </form>
         <br>
         <a th:href="@{/add}">Define a Word</a>
         <br><br>
-        <th:block th:each="word: ${words}">
-            <div>
-                <a th:href="@{'/word/' + ${word.title}}"><span th:text="${word.title}"></span></a>
+        <th:block th:each="word: ${words}" class="card" style="width: 18rem;">
+            <div class="card-body">
+            <div class="card-title"><a th:href="@{'/word/' + ${word.title}}"><span th:text="${word.title}"></span></a></div>
+            <div class="card-text" th:text="${word.definition}"></div>
+            <div class="card-text" style="font-style: italic" th:text="${word.example}"></div>
+            <div class="card-text">
+                <span>by </span><a class="card-link" th:href="@{'/user/' + ${word.user}}"><span th:text="${word.user}"></span></a>
+                <span th:text="${#temporals.format(word.localDate, 'MMMM dd, yyyy')}"></span>
             </div>
-            <p></p>
-                            <div th:text="${word.definition}"></div>
-                            <div style="font-style: italic" th:text="${word.example}"></div>
-                            <div>
-                                <span>by </span><a th:href="@{'/user/' + ${word.user}}"><span th:text="${word.user}"></span></a>
-                                <span th:text="${#temporals.format(word.localDate, 'MMMM dd, yyyy')}"></span>
-                            </div>
-            <br><br>
-                        </th:block>
+            </div>
+        </th:block>
     </div>
 </div>
+<div th:insert="fragments/header :: js"></div>
 </body>
 </html>

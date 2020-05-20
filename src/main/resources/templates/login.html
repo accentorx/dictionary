@@ -4,30 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link th:insert="fragments/header :: bootstrap" />
+
 </head>
 <body>
 <div th:insert="fragments/header :: header"></div>
-<div th:if="${param.error}">
-    Некорректное имя пользователя или пароль
-</div>
     <div class="container">
-        <form th:action="@{/login}" method="post">
-            <table>
-                <tr>
-                    <td>Username:</td>
-                    <td><input type="text" id="username" name="username"></td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" id="password" name="password"></td>
-                </tr>
-                <tr>
-                    <td><button type="submit">Log In</button></td>
-                </tr>
-            </table>
+            <div class="row">
+                <br>
+        <form th:action="@{/login}" method="post" class="form-signin">
+            <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                Некорректное имя пользователя или пароль
+            </div>
+            <div class="form-group">
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" class="form-control" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
         </form>
         <div>
         </div>
     </div>
+    </div>
+<div th:insert="fragments/header :: js"></div>
+
 </body>
 </html>
