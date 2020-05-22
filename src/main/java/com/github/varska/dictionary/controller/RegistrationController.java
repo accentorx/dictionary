@@ -25,7 +25,7 @@ public class RegistrationController {
 
         model.addAttribute("userForm", new User());
 
-        return "registration";
+        return "user/registration";
     }
     @PostMapping("/registration")
     public String addUSer(@ModelAttribute("userForm") @Valid User userForm,
@@ -34,17 +34,17 @@ public class RegistrationController {
 
         User user = userService.findByUsername(userForm.getUsername());
         if (bindingResult.hasErrors()){
-            return "registration";
+            return "user/registration";
         }
 
         if (!userForm.getPassword().equals(userForm.getConfirmPassword())){
             model.addAttribute("passError", "Пароли должны совпадать");
-            return "registration";
+            return "user/registration";
         }
 
         if (user != null){
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
-            return "registration";
+            return "user/registration";
         }
 
         userService.save(userForm);

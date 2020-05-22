@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Add</title>
-    <link th:insert="fragments/header :: bootstrap" />
+    <link th:insert="fragments/fragment :: bootstrap" />
 
 </head>
-<body>
-<div th:insert="fragments/header :: header"></div>
+<body class="bg-light text-dark">
+<div th:insert="fragments/fragment :: header"></div>
 <h3>New Word</h3>
 <div>
     <form th:action="@{/add}" method="post" enctype="multipart/form-data">
@@ -21,10 +21,10 @@
         <div class="form-group">
         <textarea class="form-control" rows="3" type="text" name="example" placeholder="Type an example of how it's used in a sentence" required></textarea>
         </div>
-        <button class="btn btn-primary" type="submit">Submit!</button>
+        <button class="btn btn-success" type="submit">Submit!</button>
     </form>
 </div>
-<div th:insert="fragments/header :: js"></div>
+<div th:insert="fragments/fragment :: js"></div>
 
 </body>
 </html>

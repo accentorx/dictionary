@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link th:insert="fragments/header :: bootstrap" />
+    <link th:insert="fragments/fragment :: bootstrap" />
 
 </head>
-<body>
-<div th:insert="fragments/header :: header"></div>
-    <div class="container">
-            <div class="row">
-                <br>
-        <form th:action="@{/login}" method="post" class="form-signin">
+<body class="bg-light text-dark">
+<div th:insert="fragments/fragment :: header"></div>
+<br>
+<div class="container">
+    <div class="row">
+        <form th:action="@{/login}" method="post" class="form-group col-md-6">
             <div th:if="${param.error}" class="alert alert-danger" role="alert">
                 Некорректное имя пользователя или пароль
             </div>
@@ -24,13 +24,12 @@
             <label for="password" class="sr-only">Password</label>
             <input type="password" id="password" class="form-control" name="password" placeholder="Password">
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+<!--            <button type="submit" class="btn btn-secondary my-2 my-sm-0">Log in</button>-->
+            <button type="submit" class="btn btn-info my-2 my-sm-0">Log in</button>
         </form>
-        <div>
-        </div>
     </div>
     </div>
-<div th:insert="fragments/header :: js"></div>
+<div th:insert="fragments/fragment :: js"></div>
 
 </body>
 </html>

@@ -25,7 +25,7 @@ public class WordController {
     @GetMapping("/add")
     public String getAdd(){
 
-        return "add";
+        return "word/add";
     }
 
     @PostMapping("/add")
@@ -47,6 +47,6 @@ public class WordController {
 
         model.addAttribute("wordFromDb", wordFromDb);
 
-        return "word";
+        return "word/word";
     }
 }

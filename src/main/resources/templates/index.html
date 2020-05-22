@@ -5,13 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Dictionary</title>
-    <link th:insert="fragments/header :: bootstrap" />
+    <link th:insert="fragments/fragment :: bootstrap" />
 </head>
 <body class="bg-light text-dark">
-<div th:insert="fragments/header :: header"></div>
+<div th:insert="fragments/fragment :: header"></div>
 <div class="container">
     <div class="col mb-4">
-        <div th:insert="fragments/header :: searchBar"></div>
+        <div th:insert="fragments/fragment :: searchBar"></div>
         <div class="col mb-4">
             <th:block th:each="word: ${words}" style="max-width: 18rem;">
                 <div class="card mb-3">
@@ -31,6 +31,6 @@
         </div>
     </div>
 </div>
-<div th:insert="fragments/header :: js"></div>
+<div th:insert="fragments/fragment :: js"></div>
 </body>
 </html>

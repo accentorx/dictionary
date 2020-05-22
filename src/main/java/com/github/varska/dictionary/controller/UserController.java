@@ -36,6 +36,6 @@ public class UserController {
         List<Word> wordList = wordService.findByUser(user);
         model.addAttribute("userWords", wordList);
 
-        return "author";
+        return "user/author";
     }
 }

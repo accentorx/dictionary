@@ -11,10 +11,10 @@
 <!--    todo не читает th:insert-->
 </head>
 <body class="bg-light text-dark">
-<div th:insert="fragments/header :: header"></div>
+<div th:insert="fragments/fragment :: header"></div>
 <div class="container">
     <div class="col mb-4">
-        <div th:insert="fragments/header :: searchBar"></div>
+        <div th:insert="fragments/fragment :: searchBar"></div>
         <div class="col mb-4">
         <h3 th:text="${userWords.size()} + ' definition by ' + ${username}"></h3>
         <th:block th:each="word: ${userWords}" style="max-width: 18rem;">
@@ -35,6 +35,6 @@
         </div>
     </div>
 </div>
-<div th:insert="fragments/header :: js"></div>
+<div th:insert="fragments/fragment :: js"></div>
 </body>
 </html>
