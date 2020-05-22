@@ -4,6 +4,7 @@ import com.github.varska.dictionary.entity.User;
 import com.github.varska.dictionary.entity.Word;
 import com.github.varska.dictionary.service.UserService;
 import com.github.varska.dictionary.service.WordService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +16,16 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    private final UserService userService;
+    private UserService userService;
+    private WordService wordService;
 
-    private final WordService wordService;
-
-    public UserController(UserService userService, WordService wordService) {
+    @Autowired
+    public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setWordService(WordService wordService) {
         this.wordService = wordService;
     }
 
