@@ -16,14 +16,14 @@
             <th:block th:each="word: ${words}" style="max-width: 18rem;">
                 <div class="card mb-3">
                     <div class="card-body text-dark">
-                        <div class="card-title"><a th:href="@{'/word/' + ${word.title}}"><span style="font-size: larger" th:text="${word.title}"></span></a></div>
+                        <div class="card-title"><a th:href="@{'/word/' + ${word.title}}"><h1 style="font-size: larger" th:text="${word.title}"></h1></a></div>
                         <div class="card-text" th:text="${word.definition}"></div>
                         <br>
                         <div class="card-text" style="font-style: italic" th:text="${word.example}"></div>
                         <br>
                         <div class="card-text">
-                            <span>by </span><a class="card-link" th:href="@{'/user/' + ${word.user}}"><span style="font-weight: bold" th:text="${word.user}"></span></a>
-                            <span th:text="${#temporals.format(word.localDate, 'MMMM dd, yyyy')}"></span>
+                            <span style="font-weight: bold">by </span><a class="card-link" th:href="@{'/user/' + ${word.user}}"><span style="font-weight: bold" th:text="${word.user}"></span></a>
+                            <span style="font-weight: bold" th:text="${#temporals.format(word.localDate, 'MMMM dd, yyyy', new java.util.Locale('en', 'USA'))}"></span>
                         </div>
                     </div>
                 </div>
