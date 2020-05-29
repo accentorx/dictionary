@@ -12,7 +12,7 @@ public class Word {
 
     private String title;
 
-    @Column(name = "defination", length = 1024)
+    @Column(name = "definition", length = 1024)
     private String definition;
 
     @Column(name = "example", length = 1024)

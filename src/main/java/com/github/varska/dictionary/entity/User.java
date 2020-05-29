@@ -29,8 +29,9 @@ public class User implements UserDetails {
     @Email
     private String email;
 
+    private String resetToken;
+
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-//    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "userr_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> role;
 
@@ -116,5 +117,13 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return username;
+    }
+
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String token) {
+        this.resetToken = token;
     }
 }

@@ -2,6 +2,7 @@ package com.github.varska.dictionary.controller;
 
 import com.github.varska.dictionary.entity.Word;
 import com.github.varska.dictionary.service.WordService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,13 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-class HomeController{
+public class HomeController{
 
-    private final WordService wordService;
-
-    public HomeController(WordService wordService) {
-        this.wordService = wordService;
-    }
+    private WordService wordService;
 
     @GetMapping("/")
     public String getPosts(Model model, String title) {
@@ -32,5 +29,10 @@ class HomeController{
         model.addAttribute("words", words);
 
         return "index";
+    }
+
+    @Autowired
+    public void setWordService(WordService wordService) {
+        this.wordService = wordService;
     }
 }

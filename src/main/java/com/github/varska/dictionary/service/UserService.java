@@ -17,4 +17,8 @@ public interface UserService extends UserDetailsService {
     void deleteById(Long id);
 
     Optional<User> findById(Long id);
+
+    User findByResetToken(String token);
+
+    User findByEmail(String email);
 }

@@ -4,11 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">-->
-<!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>-->
-<!--    <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css"-->
-<!--              rel="stylesheet">-->
-<!--    <link th:rel="stylesheet"  th:href="@{webjars/bootstrap/4.5.0/css/bootstrap.min.css} "/>-->
     <link th:insert="fragments/fragment :: bootstrap" />
 </head>
 <body class="bg-light text-dark">
@@ -20,6 +15,9 @@
         <form th:action="@{/registration}" th:object="${userForm}" method="post"  class="form-group col-md-6">
             <div th:if="${passError}">
                 <div th:text="${passError}" class="alert alert-danger" role="alert"></div>
+            </div>
+            <div th:if="${emailError}">
+                <div th:text="${emailError}" class="alert alert-danger" role="alert"></div>
             </div>
             <div th:if="${usernameError}">
                 <div th:text="${usernameError}" class="alert alert-danger" role="alert"></div>
@@ -43,13 +41,13 @@
                 <input type="email" id="email" class="form-control" name="email" placeholder="Email" required>
                 <div class="form-group">
                     <br>
-            <!--            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>-->
-                    <button type="submit" class="btn btn-info my-2 my-sm-0">Sign Up in</button>
-                <br><br><br>
-            <div class="form-group">
-                <a th:href="@{/login}" >Already have an account?</a>
+                    <button type="submit" class="btn btn-info my-2 my-sm-0">Sign Up</button>
+                </div>
             </div>
         </form>
+    </div>
+    <div class="form-group">
+        <a th:href="@{/login}" >Already have an account?</a>
     </div>
 </div>
     <div th:insert="fragments/fragment :: js"></div>

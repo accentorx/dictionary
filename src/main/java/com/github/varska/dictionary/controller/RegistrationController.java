@@ -28,7 +28,7 @@ public class RegistrationController {
         return "user/registration";
     }
     @PostMapping("/registration")
-    public String addUSer(@ModelAttribute("userForm") @Valid User userForm,
+    public String addUser(@ModelAttribute("userForm") @Valid User userForm,
                           BindingResult bindingResult,
                           Model model){
 
@@ -44,6 +44,11 @@ public class RegistrationController {
 
         if (user != null){
             model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
+            return "user/registration";
+        }
+
+        if (userService.findByEmail(userForm.getEmail()) != null){
+            model.addAttribute("emailError", "Пользователь с такой почтой уже существует");
             return "user/registration";
         }
 

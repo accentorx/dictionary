@@ -8,3 +8,8 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  mail:
+    host: smtp.mailtrap.io
+    port: 25
+    username: fefbfa42f717fe
+    password: 10cdf99e31b616

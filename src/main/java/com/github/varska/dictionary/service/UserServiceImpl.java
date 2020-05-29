@@ -3,13 +3,13 @@ package com.github.varska.dictionary.service;
 import com.github.varska.dictionary.entity.Role;
 import com.github.varska.dictionary.entity.User;
 import com.github.varska.dictionary.repository.UserRepo;
+import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,8 +45,7 @@ public class UserServiceImpl implements UserService{
 
         user.setUsername(user.getUsername().trim());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Collections.singleton(Role.USER));
-
+        user.setRoles(Sets.newHashSet(Role.USER));
         userRepo.save(user);
     }
 
@@ -68,5 +67,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public Optional<User> findById(Long id) {
         return userRepo.findById(id);
+    }
+
+    @Override
+    public User findByResetToken(String token) {
+        return userRepo.findByResetToken(token);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepo.findByEmail(email);
     }
 }
